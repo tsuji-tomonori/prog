@@ -39,7 +39,7 @@ def train():
     global train_size,classifier
 
     # 学習データの選択
-    n_samples = len(flag_3_8[flag_3_8])
+    n_samples = images.shape[1]
     train_size = int(n_samples * 3 / 5)
 
     # 分類器の生成
