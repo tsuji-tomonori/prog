@@ -51,8 +51,18 @@ def train(plt_flag):
 
     return model
 
+# 評価
+def evaluation():
 
+    # R^2を計算
+    r2 = model.score(x,y)
+
+    print('R^2:{:.5f}'.format(r2))
+    
+    return r2
+
+# main
 if __name__ == '__main__':
     preprocessing(False)
     train(True)
-
+    evaluation()
