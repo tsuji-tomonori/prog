@@ -38,9 +38,7 @@ def train():
     # 学習
     model.fit(x,y)
 
-    print(model.coef_)
-    print(model.intercept_)
-
+    print('y = {:.5f}x + {:.5f}'.format(model.coef_[0][0],model.intercept_[0]))
     return model
 
 
