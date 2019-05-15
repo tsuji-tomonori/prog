@@ -30,7 +30,7 @@ def preprocessing():
     # 画像データの一次元化
     images = images.reshape(images.shape[0],-1)
 
-    return [images,labels]
+    return [images,labels,flag_3_8]
 
 # 学習
 def train():
@@ -39,13 +39,15 @@ def train():
     global train_size,classifier
 
     # 学習データの選択
-    n_samples = images.shape[1]
+    n_samples = len(flag_3_8[flag_3_8])
     train_size = int(n_samples * 3 / 5)
 
     # 分類器の生成
-    classifier = tree.DecisionTreeClassifier()
+    # 違う分類器を試す場合, 以下を変更する
+    classifier = tree.DecisionTreeClassifier(max_depth=3)
 
     # 学習
+    # 違う分類器を試す場合, 以下を変更する
     classifier.fit(images[:train_size],labels[:train_size])
     return [classifier,train_size]
 
@@ -58,10 +60,27 @@ def evaluation():
     # 分類
     predicted = classifier.predict(images[train_size:])
 
+    # 混合行列の計算
+    confusion_matrix = metrics.confusion_matrix(expected,predicted)
+
     # 正答率の計算
     accuracy_score = metrics.accuracy_score(expected,predicted)
+
+    # 適合率の計算
+    precision_score = metrics.precision_score(expected,predicted,pos_label=3)
+
+    # 再現率の計算
+    recall_score = metrics.recall_score(expected,predicted,pos_label=3)
+
+    # F値の計算
+    f1_score = metrics.f1_score(expected,predicted,pos_label=3)
+    
+    print('混合行列:\n',confusion_matrix)
     print('正答率:',accuracy_score)
-    return accuracy_score
+    print('適合率:',precision_score)
+    print('再現率:',recall_score)
+    print('F値:',f1_score)
+    return [confusion_matrix,accuracy_score,precision_score,recall_score,f1_score]
 
 # main
 if __name__ == '__main__':
