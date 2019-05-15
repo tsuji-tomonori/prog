@@ -47,7 +47,6 @@ def train():
     classifier = tree.DecisionTreeClassifier(max_depth=3)
 
     # 学習
-    # 違う分類器を試す場合, 以下を変更する
     classifier.fit(images[:train_size],labels[:train_size])
     return [classifier,train_size]
 
