@@ -19,7 +19,6 @@ def preprocessing(plt_flag):
     x1 = np.random.rand(100,1)
     x1 = x1 * 4 - 2
 
-    
     x2 = np.random.rand(100,1)
     x2 = x2 * 4 - 2
     
@@ -28,8 +27,8 @@ def preprocessing(plt_flag):
 
     y = 3 * x1 - 2 * x2 + 1
 
-    # 標準正規分布(平均:0,標準偏差:1)の乱数を代入
-    # y += np.random.randn(100,1)
+    # 標準正規分布(平均:0,標準偏差:1)の乱数を加える
+    y += np.random.randn(100,1)
 
     # 作成したデータをグラフに表示
     if plt_flag:
