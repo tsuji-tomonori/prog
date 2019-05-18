@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from sklearn import cluster
 from sklearn import datasets
+from sklearn import metrics
 
 # 変数
 data = []
@@ -41,20 +42,39 @@ def print_result():
     # クラスタリング結果の表示
     print('クラスタリング結果\n', labels)
 
+    # データ属性の表示
+    print(iris['target_names'])
+
+    # 混合行列の表示
+    print('混合行列\n',metrics.confusion_matrix(iris['target'], model.labels_))
+    
+    # グラフの描画
+    count = 1 # カウント変数
+    for x_index in range(labels.max() + 1):
+        for y_index in range(labels.max() + 1):
+            if x_index != y_index:
+                plt.subplot(3,2,count)
+                scatter_by_features(x_index,y_index,labels)
+                count += 1
+    
+    plt.tight_layout()
+    plt.show()
+
+    return labels
+
+# 指定されたインデックスの feature 値で散布図を作成する関数
+def scatter_by_features(X_INDEX,Y_INDEX,labels):
+    
     # グラフの描画
     mark = ['o','^','*'] # グラフのマーク
-    X_INDEX = 2 # x軸 (花弁の長さ)
-    Y_INDEX = 3 # y軸 (花弁の幅)
 
-    for i in range(3):
+    for i in range(labels.max() + 1):
         ldata = data[labels == i]
         plt.scatter(ldata[:,X_INDEX],ldata[:,Y_INDEX],
                     c='black', alpha=0.3, s=100, marker=mark[i])
 
     plt.xlabel(iris['feature_names'][X_INDEX])
     plt.ylabel(iris['feature_names'][Y_INDEX])
-
-    plt.show()
 
 # main
 if __name__ == '__main__':
