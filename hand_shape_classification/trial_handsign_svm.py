@@ -46,8 +46,8 @@ def load_handimage(path):
 if __name__ == '__main__':
 
     # 変数
-    train_path = './data/my_learn10'
-    test_path = './data/other_test2'
+    train_path = '../data/my_learn10'
+    test_path = '../data/other_test2'
 
     # 学習データの読み込み
     train = load_handimage(train_path)
