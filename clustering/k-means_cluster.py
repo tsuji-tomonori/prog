@@ -49,13 +49,15 @@ def print_result():
     print('混合行列\n',metrics.confusion_matrix(iris['target'], model.labels_))
     
     # グラフの描画
-    count = 1 # カウント変数
-    for x_index in range(labels.max() + 1):
-        for y_index in range(labels.max() + 1):
-            if x_index != y_index:
-                plt.subplot(3,2,count)
-                scatter_by_features(x_index,y_index,labels)
-                count += 1
+    plt.figure(figsize=(16,16))
+    xy_size = len(iris['feature_names']) # 軸の項目数 4C2
+    count = 1 # カウント変数 
+
+    for x_index in range(xy_size):
+        for y_index in range(x_index + 1,xy_size):
+            plt.subplot(3,2,count)
+            scatter_by_features(x_index,y_index,labels)
+            count += 1
     
     plt.tight_layout()
     plt.show()
