@@ -25,5 +25,3 @@ def check_idx(idx):
     if not (0 <= idx < 3):
         return (False,"範囲外の数値を入力しています")
     return (True ,idx)
-
-use(nm.init_game(),False)
