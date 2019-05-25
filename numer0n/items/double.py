@@ -1,5 +1,4 @@
-import sys; sys.path.append('../module')
-import standard_numer0n as nm
+from module import standard_numer0n as nm
 
 def use(info,turn,digit=3):
     while True:
