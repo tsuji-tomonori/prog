@@ -7,8 +7,8 @@ def use(info,turn,digit=3):
         if fin_flag: break
         else: print(idx)
     print("{0}さんの[{1}]桁目の数値は[{2}]です".format(
-                info[not turn]["name"],
-                idx,info[turn]["ans"][idx]))
+                info[turn]["name"],
+                idx,info[turn]["ans"][idx-1]))
     
     value, eb = nm.call(info,turn)
     print("{} -> {} : {} ({})".format(info[turn]["name"],
@@ -20,7 +20,7 @@ def use(info,turn,digit=3):
 def check_idx(idx):
     if not idx.isdigit():
         return (False,"整数値ではありません")
-    idx = int(idx) - 1
-    if not (0 <= idx < 3):
+    idx = int(idx) 
+    if not (1 <= idx <= 3):
         return (False,"範囲外の数値を入力しています")
     return (True ,idx)
