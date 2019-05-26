@@ -1,11 +1,18 @@
 # coding:utf-8
 from module import standard_numer0n as nm
-from items import attack_item
+from items import attack_item,defence_item
 
 def game(digit=3):
     info = nm.init_game(digit)
     turn = False
     while True:
+        while True:
+            defence_item.DefenceItem.print_list()
+            comment = f"{info[not turn]['name']}:防御用アイテムのコマンドを入力してください:"
+            flag, item_object = defence_item.DefenceItem.return_item(input(comment))
+            if flag:break
+            print("コマンドに間違いがあります")
+        info, turn, fin_flag = item_object.use_defence(info,turn,digit)
         while True:
             attack_item.AttackItem.print_list()
             comment = f"{info[turn]['name']}:攻撃用アイテムのコマンドを入力してください:"

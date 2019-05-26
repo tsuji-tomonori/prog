@@ -1,6 +1,5 @@
-import sys; sys.path.append('../module')
-import standard_numer0n as nm
-import high_low
+from module import standard_numer0n as nm
+from items import high_low
 
 def use(old_value,digit=3):
     while True:

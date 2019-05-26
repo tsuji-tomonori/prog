@@ -1,7 +1,6 @@
-import sys; sys.path.append('../module')
-import standard_numer0n as nm
+from module import standard_numer0n as nm
 
-def use(old_value,digit):
+def use(old_value,digit=3):
     fin_flag = False
     while not fin_flag:
         value = input("変更後の値を入力してください:")
