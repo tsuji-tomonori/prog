@@ -8,15 +8,19 @@ def game(digit=3):
     while True:
         while True:
             defence_item.DefenceItem.print_list()
-            comment = f"{info[not turn]['name']}:防御用アイテムのコマンドを入力してください:"
-            flag, item_object = defence_item.DefenceItem.return_item(input(comment))
+            comment = (f"{info[not turn]['name']}:防御用アイテムのコマンドを"
+                       "入力してください:")
+            flag, item_object = defence_item.DefenceItem.return_item(
+                                                            input(comment))
             if flag:break
             print("コマンドに間違いがあります")
         info, turn, fin_flag = item_object.use_defence(info,turn,digit)
         while True:
             attack_item.AttackItem.print_list()
-            comment = f"{info[turn]['name']}:攻撃用アイテムのコマンドを入力してください:"
-            flag ,item_object = attack_item.AttackItem.return_item(input(comment))
+            comment = (f"{info[turn]['name']}:攻撃用アイテムのコマンドを"
+                       "入力してください:")
+            flag ,item_object = attack_item.AttackItem.return_item(
+                                                        input(comment))
             if flag:break
             print("コマンドに間違いがあります")
         info, turn, fin_flag = item_object.use_attack(info,turn,digit)
