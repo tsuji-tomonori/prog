@@ -1,6 +1,7 @@
 # coding:utf-8
 import random
 import getpass
+from user import human, cpu
 
 def div(value1,value2):
     eat = bite = 0
@@ -23,11 +24,11 @@ def input_num(message,digit=3,pass_flag=False):
     return value
 
 def check_num(value,digit=3,str_flag=False):
-    if len(value) != digit: return (False,"指定された桁と一致しません")
+    if len(value) != digit: return (False,"not match digit")
     if not str_flag : 
-        if not value.isdigit():return (False,"整数値ではありません")
+        if not value.isdigit():return (False,"not integer")
         else:value = [int(i) for i in [* value]]
-    if not isdouble(value): return(False,"重複があります")
+    if not isdouble(value): return(False,"there is duplication")
     return (True,value)
 
 def isdouble(value):
@@ -37,11 +38,9 @@ def isdouble(value):
     return True
 
 def init_game(digit=3):
-    info = [{"name": input("プレイヤー名を入力してください:"),
-            "ans": input_num('ans:',3,True)},
-            {"name": input("プレイヤー名を入力してください:"),
-            "ans": input_num('ans:',digit,True)}]
-    return info
+    player1 = human.init_info(digit)
+    player2 = cpu.init_info(digit)
+    return player1 + player2
 
 def call(info,turn,digit=3):
     value = input_num(f"{info[turn]['name']}:",digit,False)

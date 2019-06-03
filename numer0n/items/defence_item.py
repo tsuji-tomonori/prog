@@ -10,9 +10,9 @@ class DefenceItem(Enum):
     def use_defence(self,info,turn,digit=3):
         fin_flag = False
         if self == DefenceItem.CHANGE:
-            info[turn]["ans"] = change.use(info[turn]["ans"],digit)
+            info[not turn]["ans"] = change.use(info[not turn]["ans"],digit)
         elif self == DefenceItem.SHUFFLE:
-            info[turn]["ans"] = shuffle.use(info[turn]["ans"],digit)
+            info[not turn]["ans"] = shuffle.use(info[not turn]["ans"],digit)
         elif self == DefenceItem.NONE:
             pass
         else:
